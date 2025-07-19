@@ -19,7 +19,10 @@ function Todo() {
 
   function addTask() {
     if (newTask.trim() !== "") {
-      if (tasks.includes(newTask)) {
+      const isDuplicate = tasks.some(
+        (task) => task.toLowerCase() === newTask.toLowerCase()
+      );
+      if (isDuplicate) {
         alert("Task already exists!");
         setnewTask("");
       } else {
@@ -48,9 +51,12 @@ function Todo() {
   }
 
   function moveDown(index) {
-    if(index < tasks.length - 1) {
+    if (index < tasks.length - 1) {
       const updatedTask = [...tasks];
-      [updatedTask[index], updatedTask[index + 1]] = [updatedTask[index + 1], updatedTask[index]];
+      [updatedTask[index], updatedTask[index + 1]] = [
+        updatedTask[index + 1],
+        updatedTask[index],
+      ];
       settasks(updatedTask);
     }
   }
@@ -71,7 +77,7 @@ function Todo() {
         />
         <button
           onClick={addTask}
-          className="h-12 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg px-4 sm:px-6 transition-colors duration-200"
+          className="h-12 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg px-4 sm:px-6 transition-colors duration-200 cursor-pointer"
         >
           Add Task
         </button>
@@ -84,21 +90,18 @@ function Todo() {
             className="flex items-center justify-between p-4 bg-zinc-700 rounded-lg gap-2"
           >
             <span className="text-stone-200">{task}</span>
-            <div className="w-1/2">
-
-              
-            </div>
+            <div className="w-1/2"></div>
             <button
               className="text-green-500 hover:text-white cursor-pointer m-1"
               onClick={() => moveUp(index)}
             >
-              <CiSquareChevUp className="text-5xl"/>
+              <CiSquareChevUp className="text-5xl" />
             </button>
             <button
               className="text-amber-300 hover:text-white cursor-pointer m-1"
               onClick={() => moveDown(index)}
             >
-              <CiSquareChevDown className="text-5xl"/>
+              <CiSquareChevDown className="text-5xl" />
             </button>
             <button
               className="text-red-500 text- font-semibold  rounded-md hover:text-white cursor-pointer m-1"
