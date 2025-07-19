@@ -4,69 +4,72 @@ import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 function Footer() {
   return (
     <>
-      <hr className="border-gray-600 " />
+      <hr className="border-zinc-600 " />
 
-      <footer className="bg-gray-800 w-full py-8 px-4">
+      <footer className="bg-zinc-800 w-full py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-center items-center">
+            {/* <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
               <a
-                href="#"
+                href=""
                 className="text-stone-300 hover:text-emerald-400 transition"
               >
                 Contact us
               </a>
               <a
-                href="#"
+                href=""
                 className="text-stone-300 hover:text-emerald-400 transition"
               >
                 Our Services
               </a>
               <a
-                href="#"
+                href=""
                 className="text-stone-300 hover:text-emerald-400 transition"
               >
                 Privacy Policy
               </a>
               <a
-                href="#"
+                href=""
                 className="text-stone-300 hover:text-emerald-400 transition"
               >
                 Terms & Conditions
               </a>
               <a
-                href="#"
+                href=""
                 className="text-stone-300 hover:text-emerald-400 transition"
               >
                 Career
               </a>
-            </div>
+            </div> */}
 
             <div className="flex gap-4">
               <a
-                href="#"
+                target="blank"
+                href="https://x.com/SaurabhShreyan1"
                 className="text-stone-300 hover:text-sky-400 transition text-xl"
               >
                 <FaTwitter className="text-2xl" />
               </a>
 
               <a
-                href="#"
+                target="blank"
+                href="https://www.linkedin.com/in/shreyansh0009/"
                 className="text-stone-300 hover:text-blue-600 transition text-xl"
               >
                 <FaLinkedin className="text-2xl" />
               </a>
 
               <a
-                href="#"
+                target="blank"
+                href="https://github.com/shreyansh0009"
                 className="text-stone-300 hover:text-gray-400 transition text-xl"
               >
                 <FaGithub className="text-2xl" />
               </a>
 
               <a
-                href="#"
+                target="blank"
+                href="https://www.instagram.com/shreyansh0009/"
                 className="text-stone-300 hover:text-pink-500 transition text-xl"
               >
                 <FaInstagram className="text-2xl" />
