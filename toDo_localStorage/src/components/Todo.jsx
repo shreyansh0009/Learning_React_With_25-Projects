@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Todo() {
-  const [tasks, settasks] = useState(["Buy Apple", "Get Notebook"]);
+  const [tasks, settasks] = useState(() => {
+    const savedTasks = localStorage.getItem("todoTasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [newTask, setnewTask] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("todoTasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleChange(e) {
     setnewTask(e.target.value);
   }
 
   function addTask() {
-    settasks([...tasks, newTask]);
-    setnewTask("");
+    if (newTask.trim() !== "") {
+      if (tasks.includes(newTask)) {
+        alert("Task already exists!");
+        setnewTask("");
+      } else {
+        settasks([...tasks, newTask]);
+        setnewTask("");
+      }
+    } else {
+      alert("Please enter task first!");
+    }
   }
 
-  function deleteTask() {}
+  function deleteTask(index) {
+    const updatedTask = tasks.filter((element, i) => i !== index);
+    settasks(updatedTask);
+  }
 
   return (
     <div className="mx-auto px-4 py-8 w-full min-h-screen bg-gray-800 flex flex-col items-center">
@@ -23,6 +43,7 @@ function Todo() {
 
       <div className="w-full max-w-md px-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
         <input
+          onKeyDown={(e) => e.key === "Enter" && addTask()}
           onChange={handleChange}
           type="text"
           value={newTask}
@@ -45,7 +66,7 @@ function Todo() {
           >
             <span className="text-stone-200">{task}</span>
             <button
-              className="text-red-400 hover:text-red-300"
+              className="text-red-500 hover:text-red-300 cursor-pointer"
               onClick={() => deleteTask(index)}
             >
               Delete
